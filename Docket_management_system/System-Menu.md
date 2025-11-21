@@ -1,4 +1,4 @@
-# GEMINI.md - Docket Management System
+# System Menu - Docket Management System
 
 ## Project Overview
 
@@ -29,16 +29,16 @@ This project is a Student Docket Management System. It's a web application desig
 
 2.  **Database Setup:**
     *   Make sure you have a MySQL server running.
-    *   Create a database (e.g., `docket_system`).
+    *   Create a database (e.g., `docket_system2`).
     *   Import the schema from `docket_system2 .1.sql`.
     *   Configure the database connection by creating a `.env` file in the `Docket-system-backend` directory with the following variables. Ensure `DB_PLATFORM` is set correctly for your environment (e.g., `XAMPP` for local MySQL).
         ```
+        DB_PLATFORM=XAMPP
         DB_HOST=localhost
-        DB_USER=your_db_user
-        DB_PASSWORD=your_db_password
-        DB_NAME=docket_system
+        DB_USER=root
+        DB_PASSWORD=newpassword
+        DB_NAME=docket_system2
         JWT_SECRET=a_very_secret_key
-        DB_PLATFORM=XAMPP # Or leave blank for TiDB/Render configuration
         ```
 
 3.  **Run the Backend Server:**

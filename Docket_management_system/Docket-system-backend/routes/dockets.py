@@ -64,7 +64,7 @@ def get_db_connection():
             database=os.getenv("DATABASE"),
             autocommit=False,
             ssl_ca=os.getenv("CA"),
-            ssl_verify_cert=True if os.getenv("CA") else False
+            ssl_verify_cert=False
         )
 
 # Helper function to generate a PDF exam docket with student information, courses, and a QR code.

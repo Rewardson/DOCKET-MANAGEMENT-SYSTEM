@@ -15,17 +15,29 @@ verification_bp = Blueprint("verification", __name__)
 # Helper function to establish a database connection.
 # This function is duplicated from app.py/dockets.py for modularity within the blueprint.
 def get_db_connection():
-    # This function should ideally be centralized to avoid duplication.
-    # For now, it connects to TiDB with SSL.
-    return mysql.connector.connect(
-        host=os.getenv("HOST", "localhost"),
-        user=os.getenv("USERNAME", "root"),
-        password=os.getenv("PASSWORD", ""),
-        database=os.getenv("DATABASE", "docket_system"),
-        autocommit=False,
-        ssl_ca=os.getenv("CA"),
-        ssl_verify_cert=True
-    )
+    db_platform = os.getenv("DB_PLATFORM")
+
+    if db_platform == 'XAMPP':
+        # Configuration for local XAMPP (MariaDB) without SSL
+        return mysql.connector.connect(
+            host=os.getenv("DB_HOST", "localhost"),
+            user=os.getenv("DB_USER", "root"),
+            password=os.getenv("DB_PASSWORD", ""),
+            database=os.getenv("DB_NAME", "docket_system2"),
+            autocommit=False,
+            ssl_disabled=True
+        )
+    else:
+        # Default configuration for TiDB with SSL
+        return mysql.connector.connect(
+            host=os.getenv("HOST"),
+            user=os.getenv("USERNAME"),
+            password=os.getenv("PASSWORD"),
+            database=os.getenv("DATABASE"),
+            autocommit=False,
+            ssl_ca=os.getenv("CA"),
+            ssl_verify_cert=False
+        )
 
 @verification_bp.route("/verify", methods=["POST"])
 @jwt_required(role="admin")

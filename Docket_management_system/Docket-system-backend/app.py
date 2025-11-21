@@ -66,7 +66,7 @@ def get_db_connection():
                 database=os.getenv("DATABASE"),
                 autocommit=False,
                 ssl_ca=ca_path,
-                ssl_verify_cert=True if ca_path else False
+                ssl_verify_cert=False
             )
         # else: # Default to render
         #     # Default configuration for Render with SSL
